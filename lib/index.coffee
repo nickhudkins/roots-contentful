@@ -163,8 +163,10 @@ module.exports = (opts) ->
     transform_entries = (types) ->
       W.map types, (t) =>
         if t.transform
-          W.map t.content, (entry) =>
+          transformed = W.map t.content, (entry) =>
             W(entry, t.transform)
+          W.resolve(transformed)
+            
         W.resolve(t)
 
     ###*
